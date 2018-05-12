@@ -1,0 +1,24 @@
+source ./qos.cfg
+
+DNS1=${DNS[0]:-8.8.8.8};
+DNS2=${DNS[1]:-8.8.4.4};
+
+cat > ./bind/named.conf.options <<EOF
+options {
+        directory "/var/cache/bind";
+
+        recursion yes;
+
+        forwarders {
+              $DNS1;
+              $DNS2;
+        };
+        forward only;
+
+        dnssec-enable yes;
+        dnssec-validation yes;
+
+        auth-nxdomain no;    # conform to RFC1035
+        listen-on-v6 { any; };
+};
+EOF
