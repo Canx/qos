@@ -4,6 +4,9 @@ if [ "$EUID" -ne 0 ]
    exit
 fi
 
+# Config basic parameters
+source ./config.sh
+
 # Download and install needed packages
 apt-get update
 apt-get install autoconf make iprange ipset traceroute ebtables squid bind9
