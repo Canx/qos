@@ -22,7 +22,7 @@ cd $cwd
 cp ./firehol/fireqos.conf /usr/local/etc/firehol/
 
 # TODO: Copy squid and bind9 config
-
+cp ./squid/squid.conf /etc/squid/
 
 # Copy config files
 mkdir -p "/etc/qos"
