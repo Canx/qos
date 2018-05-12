@@ -9,19 +9,20 @@ fi
 
 # Download and install fireqos
 apt-get update
-apt-get install iprange ipset
-curl https://github.com/firehol/firehol/releases/download/v3.1.5/firehol-3.1.5.tar.bz2 -o /tmp/firehol.tar.bz2
-tar xvf /tmp/firehol.tar.bz2
+apt-get install autoconf make iprange ipset traceroute ebtables
+git clone https://github.com/firehol/firehol.git /tmp/firehol
 cd /tmp/firehol
 ./autogen.sh
-./configure
+./configure --disable-doc --disable-man
 make
 make install
 
 # Copy fireqos.conf
+cp ./fireqol.conf /usr/local/etc/firehol/
 
 # Copy files
 mkdir -p "/etc/qos"
+cp ./qos.cfg "etc/qos"
 cp ./interfaces.sh "/etc/qos"
 cp ./iptables.sh "/etc/qos"
 cp ./services.sh "/etc/qos"
