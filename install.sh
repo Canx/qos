@@ -25,7 +25,7 @@ cd $cwd
 cp ./firehol/fireqos.conf /usr/local/etc/firehol/
 
 # TODO: Copy squid and bind9 config
-
+cp ./squid/squid.conf /etc/squid/
 
 # Copy config files
 mkdir -p "/etc/qos"
@@ -35,7 +35,8 @@ cp ./iptables.sh "/etc/qos"
 cp ./services.sh "/etc/qos"
 cp ./startup.sh "/etc/qos"
 
-# 2.- Install crontab line
+# 2.- Install crontab lines
+(crontab -l ; echo "0 0 * * * /usr/sbin/squid -k rotate") | sort - | uniq - | crontab -
 (crontab -l ; echo "@reboot /etc/qos/startup.sh") | sort - | uniq - | crontab -
 
 # 3. Install netdata
