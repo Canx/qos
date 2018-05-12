@@ -24,14 +24,16 @@ $IPT -t mangle -A BULKCONN -m connbytes --connbytes 0:250 --connbytes-dir both -
 $IPT -t mangle -A BULKCONN -m connbytes --connbytes 5048576: --connbytes-dir both --connbytes-mode bytes -j MARK --set-xmark 0x8/0x8
 $IPT -t mangle -A BULKCONN -j RETURN
 
+# TODO: Módulo NDPI no instalado de momento!
 # Marca de tráfico youtube
-$IPT -t mangle -X YOUTUBE
-$IPT -t mangle -N YOUTUBE
-$IPT -t mangle -F YOUTUBE
+#$IPT -t mangle -X YOUTUBE
+#$IPT -t mangle -N YOUTUBE
+#$IPT -t mangle -F YOUTUBE
 # Descomentar si no quieres que vaya Youtube
 #$IPT -t mangle -A YOUTUBE -o br1 -m ndpi --youtube -j DROP
-$IPT -t mangle -A YOUTUBE -m mark ! --mark 0 -j ACCEPT
+#$IPT -t mangle -A YOUTUBE -m mark ! --mark 0 -j ACCEPT
 #$IPT -t mangle -A YOUTUBE -o br1 -m ndpi --youtube -j MARK --set-mark 0xF
+
 $IPT -t mangle -F POSTROUTING
 
 $IPT -A POSTROUTING -t mangle -o br1 -j CONNMARK --restore-mark
@@ -41,15 +43,12 @@ $IPT -A POSTROUTING -t mangle -o br1 -j BULKCONN
 $IPT -A POSTROUTING -t mangle -o br1 -j CONNMARK --save-mark
 
 
-# Marca de puertos (no funciona al estar en otro bridge, creo)
-
+# TODO: Marca de puertos (no funciona al estar en otro bridge, creo)
 #iptables -A PREROUTING -t mangle -j CONNMARK --restore-mark
-
 #$IPT -A FORWARD -t mangle -m physdev --physdev-in enp13s0f0 -j MARK --set-xmark 0x1/0x1
 #$IPT -A FORWARD -t mangle -m physdev --physdev-in enp13s0f1 -j MARK --set-xmark 0x2/0x2
 #iptables -A PREROUTING -t mangle -m physdev --physdev-out enp13s0f0 -j CONNMARK --set-mark 1
 #iptables -A PREROUTING -t mangle -m physdev --physdev-out enp13s0f1 -j CONNMARK --set-mark 2
-
 #iptables -A POSTROUTING -t mangle -j CONNMARK --save-mark
 
 
