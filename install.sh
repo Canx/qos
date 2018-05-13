@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check we are root
 if [ "$(whoami)" != "root" ]; then
     echo "Por favor, ejecuta como root!"

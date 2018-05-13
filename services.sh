@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # arrancamos servicios CACHE
 service bind9 start
 

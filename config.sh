@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Interfaces de red:"
 ip -o link show | awk -F': ' '{print $2}'
 echo "Indica el interfaz WAN de los disponibles:"
