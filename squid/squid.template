@@ -1,7 +1,10 @@
+source ./qos.cfg
+
+CACHEMEM=${CACHEMEM:-256};
+
+cat > ./squid/squid.conf <<EOF
+
 acl all src all
-acl localnet src 10.0.0.0/8   
-acl localnet src 172.16.0.0/12
-acl localnet src 192.168.0.0/16
 acl SSL_ports port 443
 acl Safe_ports port 80
 acl Safe_ports port 21
@@ -22,7 +25,7 @@ http_access allow all
 
 http_port 3128 intercept
 
-cache_mem 512 MB # TODO: optimizar a la memoria disponible!
+cache_mem ${CACHEMEM} MB
 
 coredump_dir /var/spool/squid3
 

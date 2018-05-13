@@ -18,9 +18,14 @@ read MASK
 echo "Indica la IP de la puerta de enlace:"
 read GATEWAY
 [[ -z "$GATEWAY" ]] && { echo "Debes indicar la ip de la puerta de enlace!" ; exit; }
+echo "Indica la memoria disponible para cache (en MB):"
+read CACHEMEM
+[[ -z "$CACHEMEM" ]] && { echo "Debes indicar la cantidad de memoria para cache!" ; exit; }
+
 echo "WAN=$WAN" > ./qos.cfg
 echo "LAN=($LAN)" >> ./qos.cfg
 echo "DNS=($DNS)" >> ./qos.cfg
 echo "IP=$IP" >> ./qos.cfg
 echo "MASK=$MASK" >> ./qos.cfg
 echo "GATEWAY=$GATEWAY" >> ./qos.cfg
+echo "CACHEMEM=$CACHEMEM" >> ./qos.cfg
