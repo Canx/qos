@@ -10,6 +10,10 @@ if [ ! -f ./qos.cfg ]; then
     exit
 fi
 
+# Generate config files
+source ./bind/bind.template
+source ./squid/squid.template
+
 # Dependencies
 apt-get update
 apt-get install autoconf make iprange ipset traceroute ebtables squid bind9
@@ -22,23 +26,27 @@ cd /tmp/firehol
 ./configure --disable-doc --disable-man
 make
 make install
+cd $cwd
 
 # interfaces
-mv /etc/network/interfaces /etc/network/interfaces.old
+if [ -f /etc/network/interfaces ]; then
+    mv /etc/network/interfaces /etc/network/interfaces.old
+fi
 cp ./network/interfaces /etc/network/interfaces
 
 # fireqos config
-cd $cwd
 cp ./firehol/fireqos.conf /usr/local/etc/firehol/
 
-# Bind config
-source bind/bind.template
-mv /etc/bind/named.conf.options /etc/bind/named.conf.options.old
-cp bind/named.conf.options /etc/bind/
+if [ -f /etc/bind/named.conf.options ]; then
+    mv /etc/bind/named.conf.options /etc/bind/named.conf.options.old
+fi
+cp ./bind/named.conf.options /etc/bind/
 
 # Squid config
-source squid/squid.template
-mv /etc/squid/squid.conf /etc/squid/squid.conf.old
+
+if [ -f /etc/squid/squid.conf ]; then
+    mv /etc/squid/squid.conf /etc/squid/squid.conf.old
+fi
 cp ./squid/squid.conf /etc/squid/
 
 # Config files
