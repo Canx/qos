@@ -1,6 +1,6 @@
 # QoS Script 
 
-Script para transformar Ubuntu Server en un servidor QoS transparente.
+Script para transformar Ubuntu Server en un servidor transparente de QoS + cache HTTP/DNS.
 
 ## Empezando
 
