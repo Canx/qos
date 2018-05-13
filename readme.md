@@ -52,7 +52,7 @@ También revisa la carpeta /etc/qos, donde están los scripts que se ejecutarán
 
 Si todo ha ido correctamente puedes verificar que funciona reiniciando y conectando el servidor entre el router y la red local mediante los interfaces LAN y WAN definidos anteriormente.
 
-Comprueba además que puedes acceder al interfaz de netdata en http://IP:19999
+Comprueba además que puedes acceder al interfaz de netdata en 'http://<IP>:19999'
 
 Enjoy!
 
