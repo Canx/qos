@@ -38,9 +38,23 @@ Por último ejecuta el script 'install' como root:
 sudo ./install.sh
 ```
 
-Si todo ha ido correctamente puedes verificar que funciona conectando el servidor entre el router y la red local, mediante los interfaces LAN y WAN definidos anteriormente.
+Este script se encargará de copiar la configuración básica de Squid, Bind y FireQos.
+
+Si quieres revisa los siguientes archivos de configuración:
+
+```
+/usr/local/etc/firehol/fireqos.conf
+/etc/squid/squid.conf
+/etc/bind/named.conf.options
+```
+
+También revisa la carpeta /etc/qos, donde están los scripts que se ejecutarán al inicio mediante cron.
+
+Si todo ha ido correctamente puedes verificar que funciona reiniciando y conectando el servidor entre el router y la red local mediante los interfaces LAN y WAN definidos anteriormente.
 
 Comprueba además que puedes acceder al interfaz de netdata en http://IP:19999
+
+Enjoy!
 
 ## Construido con
 
