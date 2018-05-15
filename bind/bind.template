@@ -22,3 +22,26 @@ options {
         listen-on-v6 { any; };
 };
 EOF
+
+cat > ./bind/named.conf.local <<EOF
+
+include /etc/bind/blocked.zones;
+
+# TODO: Falta la zona local!!!
+EOF
+
+cat > ./bind/blocked.zones <<EOF
+# Copy and paste to block more sites!
+zone "facebook.com" { type master; file "blocked.db"; };
+
+EOF
+
+cat > ./bind/blocked.db <<EOF
+$TTL 24h
+@	IN SOA dns.lan. hostmaster.lan. (
+               2003052800  86400  300  604800  3600 )
+
+@	IN	NS	dns.lan.
+@	IN	A	127.0.0.1
+*	IN	A	127.0.0.1
+EOF
