@@ -6,19 +6,26 @@ if [ "$(whoami)" != "root" ]; then
     exit 1
 fi
 
-# qos.cfg must be created
-if [ ! -f ./qos.cfg ]; then
-    echo "qos.cfg no encontrado. Ejecuta config.sh para generarlo."
-    exit
-fi
-
-# Generate config files
-source ./bind/bind.template
-source ./squid/squid.template
-
 # Dependencies
 apt-get update
 apt-get install autoconf make iprange ipset traceroute ebtables squid bind9
+
+# bind config
+
+# TODO: abort if file not found
+if [ -f /etc/bind/named.conf.options ]; then
+    mv /etc/bind/named.conf.options /etc/bind/named.conf.options.old
+fi
+cp ./bind/named.conf.options /etc/bind/
+
+# Squid config
+
+# TODO: abort if file not found
+if [ -f /etc/squid/squid.conf ]; then
+    mv /etc/squid/squid.conf /etc/squid/squid.conf.old
+fi
+cp ./squid/squid.conf /etc/squid/
+
 
 # firehol
 git clone https://github.com/firehol/firehol.git /tmp/firehol
@@ -30,6 +37,9 @@ make
 make install
 cd $cwd
 
+# TODO: abort if file not found
+cp ./firehol/fireqos.conf /usr/local/etc/firehol/
+
 # interfaces
 if [ -f /etc/network/interfaces ]; then
     mv /etc/network/interfaces /etc/network/interfaces.old
@@ -37,19 +47,6 @@ fi
 cp ./network/interfaces /etc/network/interfaces
 
 # fireqos config
-cp ./firehol/fireqos.conf /usr/local/etc/firehol/
-
-if [ -f /etc/bind/named.conf.options ]; then
-    mv /etc/bind/named.conf.options /etc/bind/named.conf.options.old
-fi
-cp ./bind/named.conf.options /etc/bind/
-
-# Squid config
-
-if [ -f /etc/squid/squid.conf ]; then
-    mv /etc/squid/squid.conf /etc/squid/squid.conf.old
-fi
-cp ./squid/squid.conf /etc/squid/
 
 # Config files
 mkdir -p "/etc/qos"

@@ -1,4 +1,8 @@
 #!/bin/bash
+read -p "Quieres generar archivo de configuración (s/n)?" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Ss]$ ]]
+then
 echo "Interfaces de red:"
 ip -o link show | awk -F': ' '{print $2}'
 echo "Indica el interfaz WAN de los disponibles:"
@@ -30,3 +34,15 @@ echo "IP=$IP" >> ./qos.cfg
 echo "MASK=$MASK" >> ./qos.cfg
 echo "GATEWAY=$GATEWAY" >> ./qos.cfg
 echo "CACHEMEM=$CACHEMEM" >> ./qos.cfg
+
+fi
+
+# Generando archivos de configuración
+if [ ! -f ./qos.cfg ]; then
+    echo "qos.cfg no encontrado. Ejecuta config.sh para generarlo."
+    exit
+fi
+
+# Generate config files
+source ./bind/bind.template
+source ./squid/squid.template
