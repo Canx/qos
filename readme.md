@@ -6,7 +6,7 @@ Script para transformar Ubuntu Server en un servidor transparente de QoS + cache
 
 El objetivo es configurar fácilmente un servidor que evite la saturación del ancho de banda de Internet, priorice determinados tipos de tráficos, y cachee en lo posible el tráfico de Internet.
 
-Puedes ver la idea de lo que se quiere configurar en el siguiente [video](https://www.youtube.com/watch?v=_rujwjzTPmc).
+Puedes ver la idea de lo que se quiere configurar en el siguiente [video](https://youtu.be/_rujwjzTPmc).
 
 ### Prerequisitos
 
