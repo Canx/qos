@@ -14,9 +14,6 @@ interface veth2 lan output balanced rate ${DOWNLOAD}Mbit
    #class group clase1 rate 20% ceil 80%
    #   match dstmac XX:XX:XX:XX:XX:XX # MAC WAN del servidor de clase1
 
-   #   class youtube prio 7
-   #      match connmark 0xF
-
    #   class bulk prio 6
    #      match connmark 0x8
 
@@ -29,8 +26,6 @@ interface veth2 lan output balanced rate ${DOWNLOAD}Mbit
 
    # Clase de grupo por defecto
    class group default 
-      class youtube prio 7
-         match connmark 0xF
 
       class bulk prio 6
          match connmark 0x8
@@ -52,9 +47,6 @@ interface $WAN wan output balanced rate ${UPLOAD}Mbit
    #class group clase1 rate 20% ceil 80%
    #   match srcmac XX:XX:XX:XX:XX:XX # MAC WAN del servidor de clase1
 
-   #   class youtube prio 7
-   #      match connmark 0xF
-
    #   class bulk prio 6
    #      match connmark 0x8
 
@@ -67,9 +59,6 @@ interface $WAN wan output balanced rate ${UPLOAD}Mbit
 
    # Clases de grupo por defecto
    class group default
-      class youtube prio 7
-         match connmark 0xF
-
       class bulk prio 6
          match connmark 0x8
 
