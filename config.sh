@@ -57,7 +57,7 @@ echo "GATEWAY=$GATEWAY" >> ./qos.cfg
 echo "MOODLE=$MOODLE" >> ./qos.cfg
 echo "CACHEMEM=$CACHEMEM" >> ./qos.cfg
 
-echo "Fichero qos.conf generado! Revísalo antes de ejecutar install.sh"
+echo "Fichero qos.conf generado!"
 fi
 
 # Generando archivos de configuración
@@ -69,3 +69,6 @@ fi
 # Generate config files
 source ./bind/bind.template
 source ./squid/squid.template
+source ./firehol/fireqos.template
+
+echo "Revisa los archivos generados antes de ejecutar sudo install.sh"

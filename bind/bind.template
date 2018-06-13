@@ -23,6 +23,8 @@ options {
 };
 EOF
 
+echo "Fichero bind/named.conf.options generado!";
+
 cat > ./bind/named.conf.local <<EOF
 
 include /etc/bind/blocked.zones;
@@ -37,6 +39,8 @@ zone "fonts.googleapis.com" { type master; file "blocked.db"; };
 
 EOF
 
+echo "Fichero bind/named.conf.local generado!"
+
 cat > ./bind/blocked.db <<EOF
 $TTL 24h
 @	IN SOA dns.lan. hostmaster.lan. (
@@ -46,3 +50,5 @@ $TTL 24h
 @	IN	A	127.0.0.1
 *	IN	A	127.0.0.1
 EOF
+
+echo "Fichero bind/named.conf.options generado!"

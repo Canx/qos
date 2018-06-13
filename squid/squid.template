@@ -58,3 +58,5 @@ refresh_pattern -i \.index.(html|htm)$ 0 40% 10080
 refresh_pattern -i \.(html|htm|css|js)$ 1440 40% 40320
 refresh_pattern . 0 40% 40320
 EOF
+
+echo "Fichero squid/squid.conf generado!"
