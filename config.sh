@@ -38,6 +38,10 @@ echo "Indica la IP de la puerta de enlace:"
 read GATEWAY
 [[ -z "$GATEWAY" ]] && { echo "Debes indicar la ip de la puerta de enlace!" ; exit; }
 
+echo "Indica la IP del servidor Moodle:"
+read MOODLE
+[[ -z "$MOODLE" ]] && { echo "Debes indicar la ip del servidor Moodle!" ; exit; }
+
 echo "Indica la memoria disponible para cache (en MB):"
 read CACHEMEM
 [[ -z "$CACHEMEM" ]] && { echo "Debes indicar la cantidad de memoria para cache!" ; exit; }
@@ -50,6 +54,7 @@ echo "DNS=($DNS)" >> ./qos.cfg
 echo "IP=$IP" >> ./qos.cfg
 echo "MASK=$MASK" >> ./qos.cfg
 echo "GATEWAY=$GATEWAY" >> ./qos.cfg
+echo "MOODLE=$MOODLE" >> ./qos.cfg
 echo "CACHEMEM=$CACHEMEM" >> ./qos.cfg
 
 echo "Fichero qos.conf generado! Revísalo antes de ejecutar install.sh"
