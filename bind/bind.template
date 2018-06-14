@@ -36,6 +36,8 @@ cat > ./bind/blocked.zones <<EOF
 # Copy and paste to block more sites!
 zone "facebook.com" { type master; file "blocked.db"; };
 zone "fonts.googleapis.com" { type master; file "blocked.db"; };
+zone "google-analytics.com" { type master; file "blocked.db"; };
+zone "fonts.gstatic.com" { type master; file "blocked.db"; };
 
 EOF
 
